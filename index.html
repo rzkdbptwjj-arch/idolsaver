@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f7f1e8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="최애투자">
+    <title>최애투자</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/icon.svg">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">굿즈 대신 투자</p>
+          <h1>최애투자</h1>
+        </div>
+        <img src="assets/album-stack.svg" alt="" class="hero-art" width="104" height="104">
+      </header>
+
+      <section class="summary" aria-labelledby="total-label">
+        <p id="total-label">지금까지 주식으로 옮길 돈</p>
+        <strong id="totalAmount">0원</strong>
+        <div class="summary-grid">
+          <article>
+            <span>오늘</span>
+            <b id="todayAmount">0원</b>
+          </article>
+          <article>
+            <span>이번 달</span>
+            <b id="monthAmount">0원</b>
+          </article>
+          <article>
+            <span>하루 평균</span>
+            <b id="dailyAverage">0원</b>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="form-title">
+        <h2 id="form-title">참은 굿즈 기록</h2>
+        <form id="entryForm">
+          <label>
+            <span>무엇을 참았나요?</span>
+            <input id="titleInput" name="title" value="앨범 1장 참기" autocomplete="off">
+          </label>
+          <label>
+            <span>가격</span>
+            <input id="amountInput" name="amount" value="24000" inputmode="numeric" autocomplete="off">
+          </label>
+          <label>
+            <span>넣을 주식/ETF</span>
+            <input id="stockInput" name="stock" value="S&P 500 ETF" autocomplete="off">
+          </label>
+          <label>
+            <span>날짜</span>
+            <input id="dateInput" name="date" type="date">
+          </label>
+          <button class="primary-button" type="submit">
+            <span>기록하기</span>
+            <span aria-hidden="true">+</span>
+          </button>
+        </form>
+      </section>
+
+      <section class="panel history-panel" aria-labelledby="history-title">
+        <div class="section-heading">
+          <h2 id="history-title">최근 기록</h2>
+          <span id="entryCount">0개</span>
+        </div>
+        <div id="emptyState" class="empty-state">
+          <img src="assets/coin-sprout.svg" alt="" width="92" height="92">
+          <p>첫 기록을 남기면 오늘과 이번 달 금액이 바로 계산돼요.</p>
+        </div>
+        <ul id="entryList" class="entry-list"></ul>
+      </section>
+
+      <section class="utility-row" aria-label="데이터 관리">
+        <button id="sampleButton" type="button">예시 넣기</button>
+        <button id="exportButton" type="button">백업 내보내기</button>
+        <label class="import-button">
+          <input id="importInput" type="file" accept="application/json">
+          백업 가져오기
+        </label>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

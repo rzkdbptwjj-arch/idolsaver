@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="앨범과 코인 그림">
+  <rect x="34" y="36" width="94" height="112" rx="18" fill="#211f1b"/>
+  <rect x="52" y="22" width="94" height="112" rx="18" fill="#e84c86"/>
+  <circle cx="99" cy="78" r="31" fill="#fffdf8"/>
+  <circle cx="99" cy="78" r="13" fill="#237a57"/>
+  <path d="M72 119h54" stroke="#fffdf8" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="129" cy="126" r="31" fill="#f2b84b"/>
+  <path d="M129 108v36M115 120c0-9 28-9 28 0 0 11-28 4-28 16 0 9 28 9 28 0" stroke="#7a4a0b" stroke-width="7" stroke-linecap="round"/>
+</svg>

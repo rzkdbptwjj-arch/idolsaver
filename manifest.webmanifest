@@ -1,0 +1,17 @@
+{
+  "name": "최애투자",
+  "short_name": "최애투자",
+  "description": "굿즈 대신 주식으로 옮길 돈을 기록하는 앱",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7f1e8",
+  "theme_color": "#f7f1e8",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

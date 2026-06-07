@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="자라는 투자 씨앗 그림">
+  <circle cx="80" cy="92" r="46" fill="#f2b84b"/>
+  <path d="M80 58v68M60 78c0-16 40-16 40 0 0 19-40 7-40 26 0 16 40 16 40 0" stroke="#7a4a0b" stroke-width="8" stroke-linecap="round"/>
+  <path d="M80 54c-4-25 11-42 37-43 2 27-14 42-37 43Z" fill="#237a57"/>
+  <path d="M76 58c-22-4-34-20-31-43 24 4 36 20 31 43Z" fill="#64a778"/>
+</svg>
