@@ -32,7 +32,8 @@ form.addEventListener("submit", (event) => {
     title: titleInput.value.trim() || "앨범 1장 참기",
     amount,
     stockName: stockInput.value.trim() || "주식 계좌",
-    date: dateInput.value || toDateInputValue(new Date())
+    date: dateInput.value || toDateInputValue(new Date()),
+    createdAt: new Date().toISOString()
   });
 
   saveEntries();
@@ -53,21 +54,24 @@ sampleButton.addEventListener("click", () => {
       title: "앨범 1장 참기",
       amount: 24000,
       stockName: "S&P 500 ETF",
-      date: toDateInputValue(today)
+      date: toDateInputValue(today),
+      createdAt: addMinutes(today, -2).toISOString()
     },
     {
       id: crypto.randomUUID(),
       title: "응원봉 파우치 참기",
       amount: 18000,
       stockName: "삼성전자",
-      date: toDateInputValue(addDays(today, -3))
+      date: toDateInputValue(addDays(today, -3)),
+      createdAt: addMinutes(today, -1).toISOString()
     },
     {
       id: crypto.randomUUID(),
       title: "랜덤 포카 2팩 참기",
       amount: 12000,
       stockName: "나스닥 ETF",
-      date: toDateInputValue(addDays(today, -10))
+      date: toDateInputValue(addDays(today, -10)),
+      createdAt: today.toISOString()
     }
   ];
   saveEntries();
@@ -99,7 +103,8 @@ importInput.addEventListener("change", async () => {
         title: String(entry.title),
         amount: Number(entry.amount),
         stockName: String(entry.stockName || "주식 계좌"),
-        date: String(entry.date)
+        date: String(entry.date),
+        createdAt: String(entry.createdAt || "")
       }));
     saveEntries();
     render();
@@ -123,7 +128,18 @@ function render() {
   dailyAverage.textContent = formatWon(average);
   entryCount.textContent = `${entries.length}개`;
 
-  const sorted = [...entries].sort((a, b) => parseDate(b.date) - parseDate(a.date));
+  const sorted = entries
+    .map((entry, index) => ({ entry, index }))
+    .sort((a, b) => {
+      const dateDifference = parseDate(b.entry.date) - parseDate(a.entry.date);
+      if (dateDifference !== 0) return dateDifference;
+
+      const createdDifference = parseTimestamp(b.entry.createdAt) - parseTimestamp(a.entry.createdAt);
+      if (createdDifference !== 0) return createdDifference;
+
+      return b.index - a.index;
+    })
+    .map((item) => item.entry);
   entryList.innerHTML = "";
   emptyState.hidden = sorted.length > 0;
 
@@ -184,6 +200,12 @@ function addDays(date, days) {
   return next;
 }
 
+function addMinutes(date, minutes) {
+  const next = new Date(date);
+  next.setMinutes(next.getMinutes() + minutes);
+  return next;
+}
+
 function toDateInputValue(date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -193,6 +215,11 @@ function toDateInputValue(date) {
 
 function formatWon(amount) {
   return `${Number(amount).toLocaleString("ko-KR")}원`;
+}
+
+function parseTimestamp(value) {
+  const timestamp = Date.parse(value);
+  return Number.isNaN(timestamp) ? 0 : timestamp;
 }
 
 function formatDate(value) {
